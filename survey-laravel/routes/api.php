@@ -21,5 +21,7 @@ Route::controller(AdminController::class)->group(function () {
 Route::controller(UserController::class)->group(function () {
     Route::get('/getsurveys/{id?}', 'getAllsurveys');
     Route::get('/getcompleted', 'getCompleted');
+    Route::get('/getquestions/{id}', 'getAllquestions');
+    Route::get('/getoptions/{id}', 'getAlloptions');
 
 });
