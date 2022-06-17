@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Survey;
 use App\Models\Question;
 use App\Models\Option;
+use App\Models\User_answer;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -49,6 +50,18 @@ class UserController extends Controller
         return response()->json([
             "status" => "Success",
             "question" => $question
+        ], 200);
+    }
+
+    public function addAnswer(Request $request){
+        $answer = User_answer::create([
+            'user_id' => $request->user_id,
+            'question_id' => $request->question_id,
+            'answer' => $request->answer
+        ]);
+
+        return response()->json([
+            "status" => "Success"
         ], 200);
     }
 }

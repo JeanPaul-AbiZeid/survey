@@ -23,5 +23,6 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/getcompleted', 'getCompleted');
     Route::get('/getquestions/{id}', 'getAllquestions');
     Route::get('/getoptions/{id}', 'getAlloptions');
+    Route::post('/addanswer', 'addAnswer');
 
 });
