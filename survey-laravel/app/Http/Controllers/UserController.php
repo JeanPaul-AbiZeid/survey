@@ -36,6 +36,9 @@ class UserController extends Controller
     public function getAllquestions($id){
         $survey = Survey::find($id);
         $survey->questions = Survey::find($id)->questions;
+        for ($i = 0; $i < count($survey->questions); $i++){
+            $survey->questions[$i]->options = Question::find($survey->questions[$i]->id)->options;
+        }
         
         return response()->json([
             "status" => "Success",
@@ -43,15 +46,15 @@ class UserController extends Controller
         ], 200);
     }
 
-    public function getAlloptions($id){
-        $question = Question::find($id);
-        $question->options = Question::find($id)->options;
+    // public function getAlloptions($id){
+    //     $question = Question::find($id);
+    //     $question->options = Question::find($id)->options;
         
-        return response()->json([
-            "status" => "Success",
-            "question" => $question
-        ], 200);
-    }
+    //     return response()->json([
+    //         "status" => "Success",
+    //         "question" => $question
+    //     ], 200);
+    // }
 
     public function addAnswer(Request $request){
         $answer = User_answer::create([
