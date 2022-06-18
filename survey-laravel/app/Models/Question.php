@@ -12,4 +12,10 @@ class Question extends Model
     {
         return $this->hasMany(Option::class);
     }
+
+    protected $fillable = [
+        'question',
+        'survey_id',
+        'type_id'
+    ];
 }
