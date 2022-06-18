@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Type;
 use App\Models\Survey;
 use App\Models\Question;
+use App\Models\Option;
 
 class AdminController extends Controller
 {
@@ -29,10 +30,21 @@ class AdminController extends Controller
     }
 
     public function addQuestion(Request $request){
-        $survey = Question::create([
+        $question = Question::create([
             'question' => $request->question,
             'type_id' => $request->type_id,
             'survey_id' => $request->survey_id
+        ]);
+        
+        return response()->json([
+            "status" => "Success"
+        ], 200);
+    }
+
+    public function addOption(Request $request){
+        $option = Option::create([
+            'question_id' => $request->question_id,
+            'option' => $request->option
         ]);
         
         return response()->json([

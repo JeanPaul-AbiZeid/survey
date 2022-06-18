@@ -18,6 +18,7 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/gettypes', 'getAlltypes');
     Route::post('/addsurvey', 'addSurvey');
     Route::post('/addquestion', 'addQuestion');
+    Route::post('/addoption', 'addOption');
 });
 
 Route::controller(UserController::class)->group(function () {
