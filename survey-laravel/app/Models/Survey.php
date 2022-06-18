@@ -12,4 +12,8 @@ class Survey extends Model
     {
         return $this->hasMany(Question::class);
     }
+
+    protected $fillable = [
+        'name'
+    ];
 }

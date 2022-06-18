@@ -16,6 +16,7 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::controller(AdminController::class)->group(function () {
     Route::get('/gettypes', 'getAlltypes');
+    Route::post('/addsurvey', 'addSurvey');
 });
 
 Route::controller(UserController::class)->group(function () {
