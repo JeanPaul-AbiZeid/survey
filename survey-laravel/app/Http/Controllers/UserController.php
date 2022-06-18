@@ -7,6 +7,7 @@ use App\Models\Survey;
 use App\Models\Question;
 use App\Models\Option;
 use App\Models\User_answer;
+use App\Models\Completed_survey;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -33,6 +34,17 @@ class UserController extends Controller
         ], 200);
     }
 
+    public function addCompleted(Request $request){
+        $survey = Completed_survey::create([
+            'user_id' => $request->user_id,
+            'survey_id' => $request->survey_id
+        ]);
+
+        return response()->json([
+            "status" => "Success"
+        ], 200);
+    }
+
     public function getAllquestions($id){
         $survey = Survey::find($id);
         $survey->questions = Survey::find($id)->questions;
@@ -45,16 +57,6 @@ class UserController extends Controller
             "survey" => $survey
         ], 200);
     }
-
-    // public function getAlloptions($id){
-    //     $question = Question::find($id);
-    //     $question->options = Question::find($id)->options;
-        
-    //     return response()->json([
-    //         "status" => "Success",
-    //         "question" => $question
-    //     ], 200);
-    // }
 
     public function addAnswer(Request $request){
         $answer = User_answer::create([
