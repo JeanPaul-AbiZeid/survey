@@ -22,6 +22,17 @@ const Surveys = () => {
                 </li>
             </ul>
         </nav>
+        <div className="main-container">
+            <h1>Available Surveys</h1>
+            <div className="survey-container">
+                <h3>Survey Name</h3>
+            </div>
+            <h1>Completed Surveys</h1>
+            <div className="completed-survey">
+                <h3>Survey Name</h3>
+            </div>
+        </div>
+        
       </div>
     );
   };
