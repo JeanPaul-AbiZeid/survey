@@ -47,7 +47,7 @@ const Login = () => {
                           .then(function (response) {
                             var token = response.data.authorisation.token
                             localStorage.setItem("jwt", token);
-                            Navigation("/Signup")
+                            Navigation("/Surveys")
                             console.log(response)
                             
                           })
