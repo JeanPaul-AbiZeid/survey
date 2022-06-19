@@ -68,7 +68,7 @@ const Surveys = () => {
                 <li>
                     <button className="btn-white" onClick={
                         function logout(){
-                            localStorage.removeItem("jwt");
+                            localStorage.clear();
                             Navigation("/")
                         }
                     }>Log Out</button>
@@ -85,6 +85,10 @@ const Surveys = () => {
                         key = {survey.id}
                         text = {survey.name}
                         className = "survey-container"
+                        onClick={() => {
+                            localStorage.setItem("survey_id", survey.id);
+                            Navigation("/Survey")
+                        }}
                       />
                     ))}
             

@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from './components/Login'
 import Signup from './components/Signup'
 import Surveys from './components/Surveys'
+import Survey from './components/Survey'
 import Admin from './components/Admin'
 
 function App() {
@@ -25,6 +26,12 @@ function App() {
         <Route path='/Surveys' element={
           <>
           <Surveys />
+          </>
+        }></Route>
+
+        <Route path='/Survey' element={
+          <>
+          <Survey />
           </>
         }></Route>
 

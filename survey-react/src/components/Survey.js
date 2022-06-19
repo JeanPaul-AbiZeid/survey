@@ -3,7 +3,7 @@ import '../App.css';
 import Button from "./Button";
 import { Link, useNavigate } from "react-router-dom";
 
-const Admin = () => {
+const Survey = () => {
     const Navigation = useNavigate();
     return (
       <div>
@@ -28,4 +28,4 @@ const Admin = () => {
     );
   };
 
-export default Admin;
+export default Survey;
