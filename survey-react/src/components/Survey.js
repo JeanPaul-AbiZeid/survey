@@ -3,6 +3,7 @@ import '../App.css';
 import Button from "./Button";
 import Question from "./Question";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
 const Survey = () => {
     const {id} = useParams()
@@ -63,9 +64,30 @@ const Survey = () => {
                     options = {info.options}
                     />
                 ))}
-                <button type="submit" onClick={(e) => {
+                <button className="submit" type="submit" onClick={(e) => {
                         e.preventDefault();
-                    console.log(values)}}>Submit</button>
+                        console.log(values)
+                        Object.entries(values).map(([key, value]) => {
+
+                            let data = new FormData();
+  
+                            data.append('user_id', localStorage.getItem("user_id"));
+                            data.append('question_id', key);
+                            data.append('answer', value);
+                            axios({
+                                method: 'post',
+                                url: 'http://127.0.0.1:8000/api/addanswer',
+                                data: data,
+                              })
+                              .then(function (response) {
+                                console.log(response)
+                                
+                              })
+                              .catch(function (error){
+                                  console.log(error)
+                              })
+                        })
+                    }}>Submit</button>
             </form>
             
             

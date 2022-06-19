@@ -53,6 +53,8 @@ const Login = () => {
                             data: data,
                           })
                           .then(function (response) {
+                            let user_id = response.data.user.id
+                            localStorage.setItem("user_id", user_id);
                             var token = response.data.authorisation.token
                             localStorage.setItem("jwt", token);
                             response.data.user.type === 1 ? Navigation("/Surveys") : Navigation("/Admin")

@@ -164,3 +164,13 @@
 .question{
   margin-top: 3%;
 }
+
+.submit {
+  margin-top: 3%;
+  background-color: rgb(62, 62, 62);
+  color: white;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 1%;
+}
