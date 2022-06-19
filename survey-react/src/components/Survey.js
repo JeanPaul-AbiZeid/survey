@@ -66,7 +66,7 @@ const Survey = () => {
                 ))}
                 <button className="submit" type="submit" onClick={(e) => {
                         e.preventDefault();
-                        console.log(values)
+
                         Object.entries(values).map(([key, value]) => {
 
                             let data = new FormData();
@@ -102,6 +102,10 @@ const Survey = () => {
                         .catch(function (error){
                             console.log(error)
                          })
+
+                         alert("Survey Submitted");
+                         Navigation("/Surveys")
+
 
                 }}>Submit</button>
             </form>
