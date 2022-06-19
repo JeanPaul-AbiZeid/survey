@@ -1,6 +1,7 @@
 import React from "react";
 import '../App.css';
 import Button from "./Button";
+import Types from "./Types";
 import { Link, useNavigate } from "react-router-dom";
 
 const Admin = () => {
@@ -23,6 +24,7 @@ const Admin = () => {
             </ul>
         </nav>
         
+        <Types />
         
       </div>
     );
