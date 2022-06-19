@@ -1,6 +1,7 @@
 import React from "react";
 import '../App.css';
 import Button from "./Button";
+import Card from "./Card";
 import { Link, useNavigate } from "react-router-dom";
 
 const Surveys = () => {
@@ -27,6 +28,7 @@ const Surveys = () => {
             <div className="survey-container">
                 <h3>Survey Name</h3>
             </div>
+            
             <h1>Completed Surveys</h1>
             <div className="completed-survey">
                 <h3>Survey Name</h3>
