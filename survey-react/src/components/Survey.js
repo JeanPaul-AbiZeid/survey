@@ -78,16 +78,32 @@ const Survey = () => {
                                 method: 'post',
                                 url: 'http://127.0.0.1:8000/api/addanswer',
                                 data: data,
-                              })
-                              .then(function (response) {
-                                console.log(response)
-                                
-                              })
-                              .catch(function (error){
-                                  console.log(error)
-                              })
+                            })
+                            .then(function (response) {
+                            
+                            })
+                            .catch(function (error){
+                                console.log(error)
+                        })})
+
+                        let result = new FormData();
+  
+                        result.append('user_id', localStorage.getItem("user_id"));
+                        result.append('survey_id', id);
+                        
+                        axios({
+                            method: 'post',
+                            url: 'http://127.0.0.1:8000/api/addcompleted',
+                            data: result,
                         })
-                    }}>Submit</button>
+                        .then(function (response) {
+                        
+                        })
+                        .catch(function (error){
+                            console.log(error)
+                         })
+
+                }}>Submit</button>
             </form>
             
             
