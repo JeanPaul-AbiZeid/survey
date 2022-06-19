@@ -9,26 +9,6 @@ const Surveys = () => {
     const [surveys, setSurveys] = useState([]);
     const [completed, setCompleted] = useState([]);
 
-    const fetchSurveys = async () => {
-        try {
-            const res = await fetch("http://127.0.0.1:8000/api/getsurveys");
-            const data = await res.json();
-            return data;
-        } catch (err) {
-            console.log(err);
-        }
-    };
-    
-    useEffect(() => {
-    //Accepts a function to perform on certain changes
-    const getSurveys = async () => {
-        const serverSurveys = await fetchSurveys();
-        setSurveys(serverSurveys.surveys);
-    };
-    getSurveys();
-    }, []);
-
-    
     const fetchCompleted = async () => {
         let jwt = localStorage.getItem("jwt")
         const myHeaders = new Headers();
@@ -51,7 +31,34 @@ const Surveys = () => {
         setCompleted(Completed.Completed_surveys);
     };
     getCompleted();
+
+    const getSurveys = async () => {
+        const serverSurveys = await fetchSurveys();
+        setSurveys(serverSurveys.surveys);
+    };
+    getSurveys()
     }, []);
+    
+    
+    const fetchSurveys = async () => {
+        try {
+            const res = await fetch("http://127.0.0.1:8000/api/getsurveys");
+            const data = await res.json();
+            return data;
+        } catch (err) {
+            console.log(err);
+        }
+    };
+    
+    // useEffect(() => {
+    // //Accepts a function to perform on certain changes
+    // const getSurveys = async () => {
+    //     const serverSurveys = await fetchSurveys();
+    //     setSurveys(serverSurveys.surveys);
+    // };
+    // getSurveys();
+    // }, []);
+
 
     let complete_array = [];
     completed.map((complete) => (
@@ -80,9 +87,8 @@ const Surveys = () => {
             <h1>Available Surveys</h1>
             {surveys.length === 0
                   ? "No Surveys Available"
-                  : surveys.map((survey) => (
-                    
-                      <Card
+                  : surveys.map((survey) => {
+                    return !complete_array.includes(survey.id) && <Card
                         key = {survey.id}
                         text = {survey.name}
                         className = "survey-container"
@@ -91,8 +97,8 @@ const Surveys = () => {
                             localStorage.setItem("survey_name", survey.name);
                             Navigation("/Survey")
                         }}
-                      />
-                    ))}
+                      />}
+                    )}
             
             <h1>Completed Surveys</h1>
             {completed.length === 0

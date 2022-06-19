@@ -24,7 +24,7 @@ const Survey = () => {
         //Accepts a function to perform on certain changes
         const getSurvey = async () => {
             const serverSurvey = await fetchSurvey();
-            console.log(serverSurvey.survey)
+            // console.log(serverSurvey.survey.questions)
             setSurvey(serverSurvey.survey.questions);
         };
         getSurvey();
@@ -54,7 +54,9 @@ const Survey = () => {
                 <Question 
                 key = {info.id}
                 id = {info.id}
+                type = {info.type}
                 text = {info.question}
+                options = {info.options}
                 />
             ))}
             
