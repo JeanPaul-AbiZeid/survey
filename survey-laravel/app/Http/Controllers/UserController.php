@@ -7,6 +7,7 @@ use App\Models\Survey;
 use App\Models\Question;
 use App\Models\Option;
 use App\Models\User_answer;
+use App\Models\Type;
 use App\Models\Completed_survey;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,6 +49,9 @@ class UserController extends Controller
     public function getAllquestions($id){
         $survey = Survey::find($id);
         $survey->questions = Survey::find($id)->questions;
+        for ($i = 0; $i < count($survey->questions); $i++){
+            $survey->questions[$i]->type = Type::find($survey->questions[$i]->type_id)->type;
+        }
         for ($i = 0; $i < count($survey->questions); $i++){
             $survey->questions[$i]->options = Question::find($survey->questions[$i]->id)->options;
         }
