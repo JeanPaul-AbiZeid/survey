@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from './components/Login'
 import Signup from './components/Signup'
 import Surveys from './components/Surveys'
+import Admin from './components/Admin'
 
 function App() {
   return (
@@ -24,6 +25,12 @@ function App() {
         <Route path='/Surveys' element={
           <>
           <Surveys />
+          </>
+        }></Route>
+
+        <Route path='/Admin' element={
+          <>
+          <Admin />
           </>
         }></Route>
       </Routes>

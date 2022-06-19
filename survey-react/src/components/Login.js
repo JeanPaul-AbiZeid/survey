@@ -1,6 +1,6 @@
 import React from "react";
 import '../App.css';
-import Signup from './Signup'
+
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from 'axios';
@@ -47,12 +47,11 @@ const Login = () => {
                           .then(function (response) {
                             var token = response.data.authorisation.token
                             localStorage.setItem("jwt", token);
-                            Navigation("/Surveys")
-                            console.log(response)
+                            response.data.user.type === 1 ? Navigation("/Surveys") : Navigation("/Admin")
                             
                           })
                           .catch(function (error){
-                              if(error.response.data.message == "Unauthorized"){
+                              if(error.response.data.message === "Unauthorized"){
                                   alert("Incorrect email or password");
                               }
                               else{
