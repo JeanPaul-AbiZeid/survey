@@ -10,6 +10,7 @@ const Survey = () => {
         <nav className="top-nav">
             <h1>S-Maker</h1>
             <ul className="links">
+                <li onClick={() => Navigation("/Surveys")}>Home</li>
                 <li>About Us</li>
                 <li>Contact</li>
                 <li>
