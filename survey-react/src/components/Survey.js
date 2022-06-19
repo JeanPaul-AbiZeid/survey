@@ -1,10 +1,34 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import '../App.css';
 import Button from "./Button";
 import { Link, useNavigate } from "react-router-dom";
 
 const Survey = () => {
     const Navigation = useNavigate();
+    const [survey, setSurvey] = useState([]);
+    const url = "http://127.0.0.1:8000/api/getquestions/" + localStorage.getItem("survey_id")
+    
+
+    const fetchSurvey = async () => {
+        try {
+            const res = await fetch(url);
+            const data = await res.json();
+            return data;
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    useEffect(() => {
+        //Accepts a function to perform on certain changes
+        const getSurvey = async () => {
+            const serverSurvey = await fetchSurvey();
+            console.log(serverSurvey.survey.questions)
+            setSurvey(serverSurvey.survey.questions);
+        };
+        getSurvey();
+        }, []);
+
     return (
       <div>
         <nav className="top-nav">
@@ -23,6 +47,9 @@ const Survey = () => {
                 </li>
             </ul>
         </nav>
+        <div className="main-container">
+            <h1>{localStorage.getItem("survey_name")}</h1>
+        </div>
         
         
       </div>
