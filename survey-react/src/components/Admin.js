@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import '../App.css';
 import Button from "./Button";
 import Types from "./Types";
@@ -24,7 +24,8 @@ const Admin = () => {
             </ul>
         </nav>
         
-        <Types />
+        <Types types={types} setSelected={setSelected}/>
+        <button>Add Question</button>
         
       </div>
     );

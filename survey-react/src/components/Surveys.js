@@ -83,8 +83,6 @@ const Surveys = () => {
                         text = {survey.name}
                         className = "survey-container"
                         onClick={() => {
-                            // localStorage.setItem("survey_id", survey.id);
-                            // localStorage.setItem("survey_name", survey.name);
                             Navigation(`/Survey/${survey.id}`)
                         }}
                       />}

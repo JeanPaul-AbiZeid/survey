@@ -8,7 +8,8 @@ const Survey = () => {
     const {id} = useParams()
     const Navigation = useNavigate();
     const [survey, setSurvey] = useState({});
-    // console.log(survey)
+    const [values, setValues] = useState({})
+
     const url = "http://127.0.0.1:8000/api/getquestions/" + id;
     
 
@@ -51,15 +52,22 @@ const Survey = () => {
         </nav>
         <div className="main-container">
             <h1>{survey.name}</h1>
-            {survey.questions && survey.questions.map((info) => (
-                <Question 
-                key = {info.id}
-                id = {info.id}
-                type = {info.type}
-                text = {info.question}
-                options = {info.options}
-                />
-            ))}
+            <form>
+                {survey.questions && survey.questions.map((info) => (
+                    <Question values={values}
+                    setValues = {setValues}
+                    key = {info.id}
+                    id = {info.id}
+                    type = {info.type}
+                    text = {info.question}
+                    options = {info.options}
+                    />
+                ))}
+                <button type="submit" onClick={(e) => {
+                        e.preventDefault();
+                    console.log(values)}}>Submit</button>
+            </form>
+            
             
         </div>
         
