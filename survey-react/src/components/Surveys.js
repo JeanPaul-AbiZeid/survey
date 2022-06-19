@@ -49,16 +49,6 @@ const Surveys = () => {
             console.log(err);
         }
     };
-    
-    // useEffect(() => {
-    // //Accepts a function to perform on certain changes
-    // const getSurveys = async () => {
-    //     const serverSurveys = await fetchSurveys();
-    //     setSurveys(serverSurveys.surveys);
-    // };
-    // getSurveys();
-    // }, []);
-
 
     let complete_array = [];
     completed.map((complete) => (
@@ -93,9 +83,9 @@ const Surveys = () => {
                         text = {survey.name}
                         className = "survey-container"
                         onClick={() => {
-                            localStorage.setItem("survey_id", survey.id);
-                            localStorage.setItem("survey_name", survey.name);
-                            Navigation("/Survey")
+                            // localStorage.setItem("survey_id", survey.id);
+                            // localStorage.setItem("survey_name", survey.name);
+                            Navigation(`/Survey/${survey.id}`)
                         }}
                       />}
                     )}

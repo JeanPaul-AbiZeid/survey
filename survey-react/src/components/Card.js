@@ -1,6 +1,7 @@
 import React from "react";
 
-const Card = ({text, onClick, className}) => {
+const Card = ({text, onClick, className, route}) => {
+  
   return (
     <div className={className} onClick={onClick}>
         <h3>{text}</h3>

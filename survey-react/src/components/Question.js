@@ -9,10 +9,10 @@ const Question = ({id, text, type, options }) => {
   return (
     <div id={id} className="question">
         
-        <div>
-            <h3>{text}</h3>
-            <input type={type}/>
-        </div>
+        3
+        <h3>{text}</h3>
+        <input type={type}/>
+        
         
     </div>
   );
