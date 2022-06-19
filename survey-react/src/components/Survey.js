@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import '../App.css';
 import Button from "./Button";
+import Question from "./Question";
 import { Link, useNavigate } from "react-router-dom";
 
 const Survey = () => {
@@ -23,7 +24,7 @@ const Survey = () => {
         //Accepts a function to perform on certain changes
         const getSurvey = async () => {
             const serverSurvey = await fetchSurvey();
-            console.log(serverSurvey.survey.questions)
+            console.log(serverSurvey.survey)
             setSurvey(serverSurvey.survey.questions);
         };
         getSurvey();
@@ -49,6 +50,14 @@ const Survey = () => {
         </nav>
         <div className="main-container">
             <h1>{localStorage.getItem("survey_name")}</h1>
+            {survey.map((info) => (
+                <Question 
+                key = {info.id}
+                id = {info.id}
+                text = {info.question}
+                />
+            ))}
+            
         </div>
         
         
