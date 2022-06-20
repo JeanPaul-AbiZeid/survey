@@ -21,12 +21,13 @@ Route::group(['middleware' => 'role.admin'], function() {
         Route::post('/addoption', 'addOption');
     });
 });
+Route::group(['middleware' => 'role.user'], function() {
+    Route::controller(UserController::class)->group(function () {
+        Route::get('/getsurveys/{id?}', 'getAllsurveys');
+        Route::get('/getcompleted', 'getCompleted');
+        Route::post('/addcompleted', 'addCompleted');
+        Route::get('/getquestions/{id}', 'getAllquestions');
+        Route::post('/addanswer', 'addAnswer');
 
-Route::controller(UserController::class)->group(function () {
-    Route::get('/getsurveys/{id?}', 'getAllsurveys');
-    Route::get('/getcompleted', 'getCompleted');
-    Route::post('/addcompleted', 'addCompleted');
-    Route::get('/getquestions/{id}', 'getAllquestions');
-    Route::post('/addanswer', 'addAnswer');
-
+    });
 });
