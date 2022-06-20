@@ -41,8 +41,13 @@ const Surveys = () => {
     
     
     const fetchSurveys = async () => {
+        let jwt = localStorage.getItem("jwt")
+        const myHeaders = new Headers();
+
+        myHeaders.append('Content-Type', 'application/json');
+        myHeaders.append('Authorization', `token ${jwt}`);
         try {
-            const res = await fetch("http://127.0.0.1:8000/api/getsurveys");
+            const res = await fetch("http://127.0.0.1:8000/api/getsurveys", {headers: myHeaders});
             const data = await res.json();
             return data;
         } catch (err) {

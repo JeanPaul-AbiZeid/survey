@@ -10,13 +10,18 @@ const Survey = () => {
     const Navigation = useNavigate();
     const [survey, setSurvey] = useState({});
     const [values, setValues] = useState({})
+    let jwt = localStorage.getItem("jwt")
+    const myHeaders = new Headers();
+
+    myHeaders.append('Content-Type', 'application/json');
+    myHeaders.append('Authorization', `token ${jwt}`);
 
     const url = "http://127.0.0.1:8000/api/getquestions/" + id;
     
 
     const fetchSurvey = async () => {
         try {
-            const res = await fetch(url);
+            const res = await fetch(url, {headers: myHeaders});
             const data = await res.json();
             return data;
         } catch (err) {
