@@ -8,19 +8,21 @@ import CreateQuest from "./CreateQuest";
 const Admin = () => {
     
   const [types, setTypes] = useState([]);
-  // const [selected, setSelected] = useState(types[0]);
   const [survey_name, setSurvey_name]= useState("");
   const [survey_questions, setSurvey_questions]= useState([]);
   
 
   function addQuestions(){
-    setSurvey_questions([...survey_questions, [<CreateQuest/>]])
+    setSurvey_questions((survey_questions) => ([...survey_questions, [<CreateQuest survey_questions={survey_questions} setSurvey_questions={setSurvey_questions}/>]]))
   }
 
   // // const handleClick = () => {
   // //   setSurvey_questions(survey_questions => (survey_questions.push({id})))
   // // }
-    
+  
+  useEffect(() => {
+    console.log(survey_questions)
+    });
   
 
     const Navigation = useNavigate();

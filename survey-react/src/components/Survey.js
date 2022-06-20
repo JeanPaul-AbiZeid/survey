@@ -82,6 +82,7 @@ const Survey = () => {
                             axios({
                                 method: 'post',
                                 url: 'http://127.0.0.1:8000/api/addanswer',
+                                headers: {'Authorization': `token ${jwt}`},
                                 data: data,
                             })
                             .then(function (response) {
@@ -99,6 +100,7 @@ const Survey = () => {
                         axios({
                             method: 'post',
                             url: 'http://127.0.0.1:8000/api/addcompleted',
+                            headers: {'Authorization': `token ${jwt}`},
                             data: result,
                         })
                         .then(function (response) {
