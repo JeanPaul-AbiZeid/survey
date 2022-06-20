@@ -3,39 +3,19 @@ import '../App.css';
 import Button from "./Button";
 import Types from "./Types";
 import { Link, useNavigate } from "react-router-dom";
+import CreateQuest from "./CreateQuest";
 
 const Admin = () => {
     
   const [types, setTypes] = useState([]);
-  const [selected, setSelected] = useState(types[0]);
-  // const [survey_name, setSurvey_name]= useState("");
-  // const [survey_questions, setSurvey_questions]= useState([]);
-
-
-  const fetchTypes = async () => {
-      let jwt = localStorage.getItem("jwt")
-      const myHeaders = new Headers();
-
-      myHeaders.append('Content-Type', 'application/json');
-      myHeaders.append('Authorization', `token ${jwt}`);
-      try {
-          const res = await fetch("http://127.0.0.1:8000/api/gettypes", {headers: myHeaders});
-          const data = await res.json();
-          return data;
-      } catch (err) {
-          console.log(err);
-      }
-  };
+  // const [selected, setSelected] = useState(types[0]);
+  const [survey_name, setSurvey_name]= useState("");
+  const [survey_questions, setSurvey_questions]= useState([]);
   
-  useEffect(() => {
-  //Accepts a function to perform on certain changes
-  const getTypes = async () => {
-      const serverTypes = await fetchTypes();
-      setTypes(serverTypes.types);
-      setSelected(serverTypes.types[0].type)
-  };
-  getTypes();
-  }, []);
+
+  function addQuestions(){
+    setSurvey_questions([...survey_questions, [<CreateQuest/>]])
+  }
 
   // // const handleClick = () => {
   // //   setSurvey_questions(survey_questions => (survey_questions.push({id})))
@@ -61,9 +41,12 @@ const Admin = () => {
                 </li>
             </ul>
         </nav>
-        {/* <Types types={types} /> */}
-        <Types types={types} setSelected={setSelected}/>
-        <button>Add Question</button>
+        
+        
+        <input placeholder="Survey Title"/>
+        
+        <button onClick={addQuestions}>Add Question</button>
+        {survey_questions}
         
       </div>
     );
