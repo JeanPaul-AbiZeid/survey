@@ -7,6 +7,12 @@ const CreateQuest = (index, questions, setQuestions) => {
     const [selected, setSelected] = useState(types[4]);
     const [question_choices, setQuestion_choices]= useState([]);
     const [currentQuestion, setCurrentQuestion] = useState({})
+    const [isActive, setIsActive] = useState(false);
+
+    const handleClick = event => {
+        // 👇️ toggle isActive state on click
+        setIsActive(current => !current);
+      };
 
     function addChoices(){
         setQuestion_choices((question_choices) => ([...question_choices, [<CreateChoice currentQuestion={currentQuestion} setCurrentQuestion={setCurrentQuestion}/>]]))
@@ -15,7 +21,7 @@ const CreateQuest = (index, questions, setQuestions) => {
     function Save(){
         setQuestions(prevQuestions => ([...prevQuestions, currentQuestion]))
     }
-    
+
     const questionType = () => {
         switch(selected){
             case "radio":
@@ -63,7 +69,7 @@ const CreateQuest = (index, questions, setQuestions) => {
     <div>
         
         <input className="quest" placeholder="Add Question" type="text" onChange={(e) => setCurrentQuestion((current) => ({...current, name:e.target.value}))} />
-        <Types types={types} setSelected={setSelected} onChange={handleTypeChange}/><br/>
+        <Types types={types} setSelected={setSelected} onChange={handleTypeChange}/><button className={!isActive ? "save" : "save-hidden"} onClick={handleClick}>Save</button><br/>
         {questionType()}
     </div>
     
