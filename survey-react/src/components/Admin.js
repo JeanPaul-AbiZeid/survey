@@ -44,11 +44,16 @@ const Admin = () => {
             </ul>
         </nav>
         
+        <div className="survey">
+          <h2>Create a Survey</h2>
+          <input placeholder="Survey Title" onChange={(e) => setSurvey_name((survey_name) =>(e.target.value))}/>
+          
+          <button className="add-question add" onClick={addQuestions}>Add Question</button>
+          {survey_questions}<br/>
+
+          <button className="add add-question">Create</button>
+        </div>
         
-        <input placeholder="Survey Title" onChange={(e) => setSurvey_name((survey_name) =>(e.target.value))}/>
-        
-        <button onClick={addQuestions}>Add Question</button>
-        {survey_questions}
         
       </div>
     );

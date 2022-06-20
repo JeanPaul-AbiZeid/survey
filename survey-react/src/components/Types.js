@@ -4,7 +4,7 @@ const Types = ({text, types, setSelected }) => {
   
 
   return (
-    <select id="types" onChange={(e) => setSelected(e.target.value)}>
+    <select className="type" id="types" onChange={(e) => setSelected(e.target.value)}>
       {types.map((type) => (
         <option key={type.id}> {type.type}</option>
       ))}

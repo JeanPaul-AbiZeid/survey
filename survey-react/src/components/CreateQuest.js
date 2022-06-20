@@ -16,7 +16,7 @@ const CreateQuest = (index, survey_questions, setSurvey_questions) => {
             case "radio":
             case "dropdown":
                 return <div>
-                    <button onClick={addChoices}>add choice</button>
+                    <button className="add add-choice" onClick={addChoices}>Add choice</button>
                     {question_choices}
                 </div>
             
@@ -52,9 +52,10 @@ const CreateQuest = (index, survey_questions, setSurvey_questions) => {
 
   return (
     <div>
-        <Types types={types} setSelected={setSelected}/>
+        
         {/* setSurvey_questions((survey_questions) =>([...survey_questions, e.target.value])) */}
-        <input  placeholder="Add Question" type="text" onChange={(e) => console.log(e.target.value)} /><br/>
+        <input className="quest" placeholder="Add Question" type="text" onChange={(e) => console.log(e.target.value)} />
+        <Types types={types} setSelected={setSelected}/><br/>
         {questionType()}
     </div>
     
