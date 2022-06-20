@@ -45,7 +45,7 @@ const Admin = () => {
         </nav>
         
         
-        <input placeholder="Survey Title"/>
+        <input placeholder="Survey Title" onChange={(e) => setSurvey_name((survey_name) =>(e.target.value))}/>
         
         <button onClick={addQuestions}>Add Question</button>
         {survey_questions}
