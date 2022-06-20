@@ -10,15 +10,12 @@ const Admin = () => {
   const [types, setTypes] = useState([]);
   const [survey_name, setSurvey_name]= useState("");
   const [survey_questions, setSurvey_questions]= useState([]);
+  const [questions, setQuestions] = useState([])
   
 
   function addQuestions(){
-    setSurvey_questions((survey_questions) => ([...survey_questions, [<CreateQuest survey_questions={survey_questions} setSurvey_questions={setSurvey_questions}/>]]))
+    setSurvey_questions((survey_questions) => ([...survey_questions, [<CreateQuest questions={questions} setQuestions={setQuestions}/>]]))
   }
-
-  // // const handleClick = () => {
-  // //   setSurvey_questions(survey_questions => (survey_questions.push({id})))
-  // // }
   
   useEffect(() => {
     console.log(survey_questions)

@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from "react";
 
-const Types = ({text, types, setSelected }) => {
+const Types = ({text, types, setSelected, onChange }) => {
   
 
   return (
-    <select className="type" id="types" onChange={(e) => setSelected(e.target.value)}>
+    <select className="type" id="types" onChange={(e) => {
+      onChange(e.target.value)
+      setSelected(e.target.value)}}>
       {types.map((type) => (
         <option key={type.id}> {type.type}</option>
       ))}

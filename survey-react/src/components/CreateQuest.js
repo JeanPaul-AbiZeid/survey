@@ -2,15 +2,20 @@ import React, {useState, useEffect} from "react";
 import CreateChoice from "./CreateChoice";
 import Types from "./Types";
 
-const CreateQuest = (index, survey_questions, setSurvey_questions) => {
+const CreateQuest = (index, questions, setQuestions) => {
     const [types, setTypes] = useState([]);
     const [selected, setSelected] = useState(types[4]);
     const [question_choices, setQuestion_choices]= useState([]);
+    const [currentQuestion, setCurrentQuestion] = useState({})
 
     function addChoices(){
-        setQuestion_choices((question_choices) => ([...question_choices, [<CreateChoice/>]]))
+        setQuestion_choices((question_choices) => ([...question_choices, [<CreateChoice currentQuestion={currentQuestion} setCurrentQuestion={setCurrentQuestion}/>]]))
     }
 
+    function Save(){
+        setQuestions(prevQuestions => ([...prevQuestions, currentQuestion]))
+    }
+    
     const questionType = () => {
         switch(selected){
             case "radio":
@@ -22,6 +27,10 @@ const CreateQuest = (index, survey_questions, setSurvey_questions) => {
             
             default: return
             }
+    }
+
+    const handleTypeChange = (type) => {
+        setCurrentQuestion(current => ({...current, type:type}))
     }
 
     const fetchTypes = async () => {
@@ -53,9 +62,8 @@ const CreateQuest = (index, survey_questions, setSurvey_questions) => {
   return (
     <div>
         
-        {/* setSurvey_questions((survey_questions) =>([...survey_questions, e.target.value])) */}
-        <input className="quest" placeholder="Add Question" type="text" onChange={(e) => console.log(e.target.value)} />
-        <Types types={types} setSelected={setSelected}/><br/>
+        <input className="quest" placeholder="Add Question" type="text" onChange={(e) => setCurrentQuestion((current) => ({...current, name:e.target.value}))} />
+        <Types types={types} setSelected={setSelected} onChange={handleTypeChange}/><br/>
         {questionType()}
     </div>
     
