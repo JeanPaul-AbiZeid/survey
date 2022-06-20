@@ -11,6 +11,19 @@ const CreateQuest = (index) => {
         setQuestion_choices([...question_choices, [<CreateChoice/>]])
     }
 
+    const questionType = () => {
+        switch(selected){
+            case "radio":
+            case "dropdown":
+                return <div>
+                    <button onClick={addChoices}>add choice</button>
+                    {question_choices}
+                </div>
+            
+            default: return
+            }
+    }
+
     const fetchTypes = async () => {
         let jwt = localStorage.getItem("jwt")
         const myHeaders = new Headers();
@@ -41,8 +54,7 @@ const CreateQuest = (index) => {
     <div key={index}>
         <Types types={types} setSelected={setSelected}/>
         <input  placeholder="Add Question" type="text"/><br/>
-        <button onClick={addChoices}>add choice</button>
-        {question_choices}
+        {questionType()}
     </div>
     
   );
